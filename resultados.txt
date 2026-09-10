@@ -1,0 +1,24 @@
+client_conteudo_1-1   | QoE Média (FedAvg): 101.07358382091408
+client_conteudo_1-1   | QoE Média (FedProx): 100.49323782277949
+client_conteudo_1-1   | QoE Média (Scaffold): 102.86128878188168
+client_conteudo_1-1   | Erro Manhattan Médio (FedAvg): 1.1920110238036792
+client_conteudo_1-1   | Erro Manhattan Médio (FedProx): 1.2096301143906056
+client_conteudo_1-1   | Erro Manhattan Médio (Scaffold): 1770.3974366823115
+client_aleatorio_1-1  | QoE Média (FedAvg): 35.77243802116937
+client_aleatorio_1-1  | QoE Média (FedProx): 36.59228812689207
+client_aleatorio_1-1  | QoE Média (Scaffold): 35.40430570666945
+client_aleatorio_1-1  | Erro Manhattan Médio (FedAvg): 1.332303669158241
+client_aleatorio_1-1  | Erro Manhattan Médio (FedProx): 1.2693981539817283
+client_aleatorio_1-1  | Erro Manhattan Médio (Scaffold): 1345.4885326656522
+client_conteudo_2-1   | QoE Média (FedAvg): 143.25772404152093
+client_conteudo_2-1   | QoE Média (FedProx): 142.97212972017223
+client_conteudo_2-1   | QoE Média (Scaffold): 145.1781820158208
+client_conteudo_2-1   | Erro Manhattan Médio (FedAvg): 1.1403761656941322
+client_conteudo_2-1   | Erro Manhattan Médio (FedProx): 1.1279979955401498
+client_conteudo_2-1   | Erro Manhattan Médio (Scaffold): 2342.445714169849
+client_aleatorio_2-1  | QoE Média (FedAvg): 49.63245584719091
+client_aleatorio_2-1  | QoE Média (FedProx): 50.98335845746625
+client_aleatorio_2-1  | QoE Média (Scaffold): 49.670528073465235
+client_aleatorio_2-1  | Erro Manhattan Médio (FedAvg): 1.2939591623728794
+client_aleatorio_2-1  | Erro Manhattan Médio (FedProx): 1.206184975082102
+client_aleatorio_2-1  | Erro Manhattan Médio (Scaffold): 2317.2785996235502

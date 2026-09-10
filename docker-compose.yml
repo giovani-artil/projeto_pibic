@@ -1,0 +1,94 @@
+version: "3.8"
+
+networks:
+  fl_net:
+
+volumes:
+  shared_data:
+    external: true
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    environment:
+      - TOTAL_CLIENTS=4
+      - SERVER_MODE=sync
+      - TIMER_INTERVAL=0.0
+      - PACKET_LOSS_RATE=0.0
+    volumes:
+      - shared_data:/app/server/SampleVideos
+    ports:
+      - "5000:5000"
+    networks:
+      - fl_net
+    command: gunicorn --chdir /app/server -w 1 --threads 16 -b 0.0.0.0:5000 server:app
+
+  client_conteudo_1:
+    build:
+      context: .
+      dockerfile: Dockerfile.client_foco_conteudo
+    environment:
+      - SERVER_URL=http://server:5000
+      - SILO_ID=conteudo_1
+    volumes:
+      - shared_data:/app/client_foco_conteudo/shared_data
+    depends_on:
+      - server
+    networks:
+      - fl_net
+    command: >
+      sh -c "python /app/client_foco_conteudo/PanoSaliency/get_viewport.py -D 1 -T paris --fps 60 &&
+             python /app/client_foco_conteudo/Prediction/main.py -D 1 -T paris --fps 60 -Q 720p -I 1 --syncOrAssync sync --numUsers 4 --chuncksToWait 5"
+
+  client_conteudo_2:
+    build:
+      context: .
+      dockerfile: Dockerfile.client_foco_conteudo
+    environment:
+      - SERVER_URL=http://server:5000
+      - SILO_ID=conteudo_2
+    volumes:
+      - shared_data:/app/client_foco_conteudo/shared_data
+    depends_on:
+      - server
+    networks:
+      - fl_net
+    command: >
+      sh -c "python /app/client_foco_conteudo/PanoSaliency/get_viewport.py -D 1 -T paris --fps 60 &&
+             python /app/client_foco_conteudo/Prediction/main.py -D 1 -T paris --fps 60 -Q 720p -I 2 --syncOrAssync sync --numUsers 4 --chuncksToWait 5"
+
+  client_aleatorio_1:
+    build:
+      context: .
+      dockerfile: Dockerfile.client_foco_aleatorio
+    environment:
+      - SERVER_URL=http://server:5000
+      - SILO_ID=aleatorio_1
+    volumes:
+      - shared_data:/app/client_foco_aleatorio/shared_data
+    depends_on:
+      - server
+    networks:
+      - fl_net
+    command: >
+      sh -c "python /app/client_foco_aleatorio/PanoSaliency/get_viewport.py -D 1 -T paris --fps 60 &&
+             python /app/client_foco_aleatorio/Prediction/main.py -D 1 -T paris --fps 60 -Q 720p -I 1 --syncOrAssync sync --numUsers 8 --chuncksToWait 5"
+
+  client_aleatorio_2:
+    build:
+      context: .
+      dockerfile: Dockerfile.client_foco_aleatorio
+    environment:
+      - SERVER_URL=http://server:5000
+      - SILO_ID=aleatorio_2
+    volumes:
+      - shared_data:/app/client_foco_aleatorio/shared_data
+    depends_on:
+      - server
+    networks:
+      - fl_net
+    command: >
+      sh -c "python /app/client_foco_aleatorio/PanoSaliency/get_viewport.py -D 1 -T paris --fps 60 &&
+             python /app/client_foco_aleatorio/Prediction/main.py -D 1 -T paris --fps 60 -Q 720p -I 2 --syncOrAssync sync --numUsers 4 --chuncksToWait 5"

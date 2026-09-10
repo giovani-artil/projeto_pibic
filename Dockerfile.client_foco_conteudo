@@ -1,0 +1,20 @@
+FROM python:3.9.7-slim
+
+ENV PYTHONBUFFERED=1
+
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY ./client_foco_conteudo/requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+COPY client_foco_conteudo/river_modified/pa.py \
+    /usr/local/lib/python3.9/site-packages/river/linear_model/pa.py
+
+COPY client_foco_conteudo/ /app/client_foco_conteudo/
+
+RUN echo 'export PS1="\u@$(hostname -s):\w\$ "' >> /root/.bashrc

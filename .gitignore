@@ -1,0 +1,4 @@
+client_foco_aleatorio/PanoSaliency/data/head-orientation/
+client_foco_conteudo/PanoSaliency/data/head-orientation/
+**/__pycache__/**
+*.weights
